@@ -6,5 +6,5 @@
     tools:context=".TodoFragment"
     android:background="#225B8E"
     android:id="@+id/todoRecycler">
-
 </androidx.recyclerview.widget.RecyclerView>
+
