@@ -7,8 +7,8 @@ public class Todo {
     public static Todo[] todos={
             new Todo("Sharkz",false),
             new Todo("Reigns",true),
-            new Todo("Jck",true),
-            new Todo("Lr",true),
+            new Todo("Jck",false),
+            new Todo("Lr",false),
             new Todo("Cl",true),
     };
 

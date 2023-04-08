@@ -24,8 +24,11 @@ public class TodoFragment extends Fragment {
         RecyclerView recyclerView= (RecyclerView) inflater.inflate(R.layout.fragment_todo, container, false);
 
         todos=new ArrayList<>();
-        todos.addAll(Arrays.asList(Todo.todos));
-
+        for (Todo todo:Todo.todos){
+            if(!todo.isDone()){
+                todos.add(todo);
+            }
+        }
         adapter=new DoneAdapter(getContext(),todos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);

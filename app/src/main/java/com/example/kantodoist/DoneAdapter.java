@@ -1,6 +1,7 @@
 package com.example.kantodoist;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.MyViewHolder> 
     public DoneAdapter(Context context, ArrayList<Todo> todos) {
         this.context = context;
         this.todos = todos;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -32,6 +34,10 @@ public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Todo todo=todos.get(position);
         holder.textView.setText(todo.getText());
+
+        if(!todo.isDone()){
+            holder.itemView.setBackgroundTintList(ColorStateList.valueOf(context.getColor(R.color.bg_card_todo)));
+        }
 
     }
 
