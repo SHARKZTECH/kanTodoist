@@ -10,12 +10,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         SectionPagerAdapter adapter=new SectionPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        FloatingActionButton fab=findViewById(R.id.fab);
+        fab.setOnClickListener(view -> {
+            startActivity(new Intent(this,NewTaskActivity.class));
+        });
 
 
     }

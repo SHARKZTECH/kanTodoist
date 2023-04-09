@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewTaskActivity"
     android:background="@color/bg_card_todo"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:padding="20dp">
 
     <TextView
+        android:id="@+id/todoLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="What is to be done ?"
@@ -16,19 +16,37 @@
         android:textColor="@color/teal_200"
         android:textStyle="bold"/>
     <EditText
+        android:id="@+id/task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Task Here"/>
+        android:hint="Enter Task Here"
+        android:layout_below="@id/todoLabel"
+        android:layout_marginBottom="50dp"/>
 
     <TextView
+        android:id="@+id/dateLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Due Date"
         android:textSize="20sp"
         android:textColor="@color/teal_200"
-        android:textStyle="bold"/>
-    <DatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold"
+        android:layout_below="@id/task"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:id="@+id/dateView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12/12/2000"
+        android:layout_below="@id/dateLabel"/>
+    <ImageView
+        android:id="@+id/dateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar"
+        android:layout_below="@id/dateLabel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"/>
 
-</LinearLayout>
+
+</RelativeLayout>
