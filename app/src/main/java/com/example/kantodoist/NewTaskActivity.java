@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class NewTaskActivity extends AppCompatActivity {
     ImageView dateBtn;
@@ -45,8 +46,11 @@ public class NewTaskActivity extends AppCompatActivity {
 
         fabAdd.setOnClickListener(view -> {
             String task=text.getText().toString();
+            calendar.set(year,month-1,day);
+            Date date=calendar.getTime();
 
             Toast.makeText(this, task, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, date.toString(), Toast.LENGTH_SHORT).show();
 
             text.setText("");
         });
@@ -64,9 +68,10 @@ public class NewTaskActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener myDateListener=new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
-            showDate(i,i1+1,12);
-            Toast.makeText(NewTaskActivity.this, "date set", Toast.LENGTH_SHORT).show();
+            showDate(i,i1+1,i2);
+            year=i;
+            month=i1+1;
+            day=i2;
         }
     };
 
