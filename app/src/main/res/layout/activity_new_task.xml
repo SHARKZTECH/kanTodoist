@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dateLabel"
+        android:text="No Date Selected!"
         android:layout_marginHorizontal="20dp" />
 
     <ImageView
