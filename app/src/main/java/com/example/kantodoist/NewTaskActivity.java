@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -58,6 +59,9 @@ public class NewTaskActivity extends AppCompatActivity {
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                            year=i;
+                            month=i1;
+                            day=i2;
                            dateView.setText(i2+"-"+(i1+1)+"-"+i);
                         }
                     },year,month,day);
@@ -69,51 +73,37 @@ public class NewTaskActivity extends AppCompatActivity {
                     new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                            hrs=i;
+                            min=i1;
                             timeView.setText(i+":"+i1);
                         }
-                    },hrs,min,false);
+                    },hrs,min,true);
             timePickerDialog.show();
         });
 
         fabAdd.setOnClickListener(view -> {
             String task=text.getText().toString();
-            calendar.set(year,month-1,day,hrs,min);
+            calendar.set(year,month,day,hrs,min);
             Date date=calendar.getTime();
+            Long d=calendar.getTimeInMillis();
 
             Toast.makeText(this, date.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, d.toString(), Toast.LENGTH_SHORT).show();
 
-            AppDb db=AppDb.getINSTANCE(this);
-            Task task1=new Task();
-            task1.text=task;
-            task1.isDone=false;
+            Intent intent=new Intent(this,TaskNotificationService.class);
+            intent.putExtra(TaskNotificationService.EXTRA_MESSAGE,task);
+            startService(intent);
 
-            db.taskDao().addTask(task1);
-            Toast.makeText(this, "Created!", Toast.LENGTH_SHORT).show();
-            finish();
+//            AppDb db=AppDb.getINSTANCE(this);
+//            Task task1=new Task();
+//            task1.text=task;
+//            task1.isDone=false;
+//            task1.dueAt=d;
+//
+//            db.taskDao().addTask(task1);
+//            Toast.makeText(this, "Created!", Toast.LENGTH_SHORT).show();
+//            finish();
         });
-
     }
 
-//    @Override
-//    protected Dialog onCreateDialog(int id) {
-//        if(id==999){
-//            return new DatePickerDialog(this,myDateListener,year,month,day);
-//        }
-//        return null;
-//    }
-//
-//    private DatePickerDialog.OnDateSetListener myDateListener=new DatePickerDialog.OnDateSetListener() {
-//        @Override
-//        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-//            showDate(i,i1+1,i2);
-//            year=i;
-//            month=i1+1;
-//            day=i2;
-//        }
-//    };
-//
-//    private void showDate(int year,int month,int day){
-//        dateView.setText(new StringBuffer().append(day).append("/")
-//                .append(month).append("/").append(year));
-//    }
 }

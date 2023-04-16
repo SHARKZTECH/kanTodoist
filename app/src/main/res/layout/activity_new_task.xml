@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter Task Here"
         android:layout_below="@id/todoLabel"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
        android:layout_marginHorizontal="20dp"/>
 
     <TextView
@@ -55,12 +55,13 @@
 
     <ImageView
         android:id="@+id/dateBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/calendar"
         android:layout_below="@id/dateLabel"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"/>
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/timeView"
@@ -72,12 +73,13 @@
 
     <ImageView
         android:id="@+id/timeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/calendar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/time"
         android:layout_below="@id/dateView"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"/>
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabSave"
