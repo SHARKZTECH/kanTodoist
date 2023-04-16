@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.kantodoist.db.AppDb;
+import com.example.kantodoist.db.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -53,10 +55,16 @@ public class NewTaskActivity extends AppCompatActivity {
             calendar.set(year,month-1,day);
             Date date=calendar.getTime();
 
-            Toast.makeText(this, task, Toast.LENGTH_SHORT).show();
             Toast.makeText(this, date.toString(), Toast.LENGTH_SHORT).show();
 
-            text.setText("");
+            AppDb db=AppDb.getINSTANCE(this);
+            Task task1=new Task();
+            task1.text=task;
+            task1.isDone=false;
+
+            db.taskDao().addTask(task1);
+            Toast.makeText(this, "Created!", Toast.LENGTH_SHORT).show();
+            finish();
         });
 
     }
