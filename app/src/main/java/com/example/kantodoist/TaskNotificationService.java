@@ -9,15 +9,7 @@ import android.content.Context;
 
 import androidx.core.app.NotificationCompat;
 
-/**
- * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
 
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
-
- */
 public class TaskNotificationService extends IntentService {
 
     public static final String EXTRA_MESSAGE = "message";
@@ -36,7 +28,9 @@ public class TaskNotificationService extends IntentService {
                 e.printStackTrace();
             }
         }
+
         String text=intent.getStringExtra(EXTRA_MESSAGE);
+        showText(text);
     }
 
     private void showText(String text) {
