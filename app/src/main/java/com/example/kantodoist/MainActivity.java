@@ -17,13 +17,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.kantodoist.db.AppDb;
+import com.example.kantodoist.db.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPager viewPager;
     TabLayout tabLayout;
+
+    List<Task> taskList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,5 +100,9 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private void loadTasks(){
+        AppDb db=AppDb.getINSTANCE(this.getApplicationContext());
+        taskList=db.taskDao().getAllTasks();
     }
 }
